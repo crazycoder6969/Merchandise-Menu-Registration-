@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-widthx, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="style.css">
+        <title>Merchandise Registration Form</title>
+        
+    </head>
+    <body >
+        <div class="container">
+            <header>Merchandise Registration form</header>
+            <form action="/myaction.php" name="myform" onsubmit="return validateForm()" method="post">
+                <div class="pers details">
+                    <span class="title">Personal Details</span>
+                    <div class="fields">
+                        <div class="input-field" id="name">
+                            <label for="name">Full Name</label>
+                            <input type="text"  name="fname" placeholder="Enter your Name" required>
+                            <br><span class="error"></span></br>
+                        </div>
+                        <div class="input-field" id="email">
+                            <label for="email">Email ID</label>
+                            <input type="email" name="mail" placeholder="Enter Email ID" required>
+                            <span class="error"></span>
+                        </div>
+                        <div class="input-field" id="phone">
+                            <label for="phone">Phone Number</label>
+                            <input type="number" name="no" placeholder="Enter phone number" required>
+                            <span class="error"></span>
+                        </div>
+                        <div class="input-field" id="ID">
+                            <label for="ID">BITS ID</label>
+                            <input type="text"  name="idfd" placeholder="Enter BITS ID" required>
+                            <span class="error"></span>
+                        </div>
+                        <div class="input-field" id="T&M">
+                            <label for="T&M">Terms&Conditions</label>
+                            <input type="checkbox" name="check" id="check">
+                            <span class="error"></span>
+                        </div>
+                        <div >
+                            <input class="b" type="Submit" value="submit">
+                            
+                        </div>
+                        
+                        
+
+
+
+                             
+                            
+                        
+                        </div>
+
+                    </div>
+                </div>
+                
+                
+            </form>
+            <div>
+                <button class="b" id="reset" >clear</button>
+            </div>
+            
+            
+        </div>
+        
+
+    </body>
+    <script>
+        let btclear=document.querySelector('#reset');
+        let inputs=document.querySelectorAll('input[type="text"]');
+        
+        
+        btclear.addEventListener('click',() => {
+            inputs.forEach(input=input.value="");
+            
+
+            
+        })
+        
+
+
+        
+        
+        function seterror(id, erroring)
+        {
+            element = document.getElementById(id);
+            element.getElementsByClassName('error')[0].innerHTML = erroring;
+
+
+
+        }
+        function  checkID(id)
+        {
+            const l = id.split("");
+            const b=(l.length==13);
+            
+            
+
+            
+            const d=(l[12]==="P");
+            const arr = ['A','B'];
+            const arr1=['A','B','1','2','3','4','5','6','7','8','9'];
+            const x=(arr.includes(l[4])&&arr1.includes(l[5]));
+            const m=(l[6]).concat(l[7]);
+            const s=(m=="PS");
+            const val = (b&&d&&x&&s);
+            return val;
+            
+
+
+
+
+
+        }
+        
+        
+
+            
+
+                
+        
+        function validateForm()
+        {
+            
+            var returnval=true;
+            
+
+            
+            
+            
+            var name=document.forms['myform']["fname"].value;
+            
+            console.log(name);
+            var email=document.forms['myform']["mail"].value;
+            console.log(email);
+            var eyed=document.forms['myform']["idfd"].value;
+            
+            console.log(eyed);
+            var phone=document.forms['myform']["no"].value;
+            console.log(phone);
+            let t_m = document.querySelector("#check");
+            console.log(t_m);
+            
+            if (name.length<5||name.length>50){
+                
+                seterror("name","Please Enter Name between 5 to 50 characters");
+                
+                returnval=false;
+                
+     
+            }
+            if(!(t_m.checked))
+            {
+                seterror("T&M","Please agree to terms and conditions");
+
+                returnval=false;
+
+            }
+            if(!(checkID(eyed)))
+            {
+                seterror("ID","Please Enter correct ID");
+
+                returnval=false;
+            }
+            
+            return returnval;
+            
+            
+            
+
+
+            
+            
+
+
+        }
+    </script>
+</html>
